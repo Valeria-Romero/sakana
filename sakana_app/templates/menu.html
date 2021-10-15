@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/home_styles.css') }}">
+    <title>Sakana | Menu</title>
+</head>
+<body>
+
+    <img src="{{ url_for('static',filename='imgs/3.jpg') }}" alt="background image" class="home_background_img">
+    <div  class="header">
+        <div class="logo_container">
+            <img src="{{ url_for('static',filename='imgs/logo.png') }}" alt="logo image" class="logo_img">    
+        </div>
+        <ul class="navBar">
+            <li><a href="/home" class="nav_option">Home</a></li>
+            <li><a href="/menu" class="nav_option">Menu</a></li>
+            {%if order_info == ()%}
+            <li><a href="/cart" class="nav_option">Cart</a></li>
+            {%else%}
+            <li><a href="/cart" class="nav_option">Cart (1)</a></li>
+            {%endif%}
+            <li><a href="/profile" class="nav_option">Profile</a></li>
+            <li><a href="/logout" class="nav_option">Logout</a></li>
+        </ul>
+    </div>
+    <div class="products_container">
+        <h1 class="category_title">Sushi</h1>
+        <div class="products">
+            <div class="card">
+                <h2 class="product_title">Rainbow roll</h2>
+                <img src="{{ url_for('static',filename='imgs/rainbow.jpg') }}" alt="background image" class="menu_image">
+                <!-- <p class="product_description">Uramaki sushi with multiple fillings and toppings; including shrimp tempura, salmon, white fish, avocado, mango, with rice mixed with tobiko</p> -->
+                <form action="/add/product/sushi" method="POST">
+                    <input type="hidden" value="1" name="sushi_id">
+                    <button type="submit" class="action">Add to order</button>
+                </form>            
+            </div>
+            <div class="card">
+                <h2 class="product_title">California roll</h2>
+                <img src="{{ url_for('static',filename='imgs/california.jpg') }}" alt="background image" class="menu_image">
+                <!-- <p class="product_description">Uramaki sushi with multiple fillings and toppings; including shrimp tempura, salmon, white fish, avocado, mango, with rice mixed with tobiko</p> -->
+                <form action="/add/product/sushi" method="POST">
+                    <input type="hidden" value="2" name="sushi_id">
+                    <button type="submit" class="action">Add to order</button>
+                </form>            
+            </div>
+            <div class="card">
+                <h2 class="product_title">Salmon skin roll</h2>
+                <img src="{{ url_for('static',filename='imgs/salmon.jpg') }}" alt="background image" class="menu_image">
+                <!-- <p class="product_description">Uramaki sushi with multiple fillings and toppings; including shrimp tempura, salmon, white fish, avocado, mango, with rice mixed with tobiko</p> -->
+                <form action="/add/product/sushi" method="POST">
+                    <input type="hidden" value="3" name="sushi_id">
+                    <button type="submit" class="action">Add to order</button>
+                </form>            
+            </div>
+        </div>
+        {% with messages = get_flashed_messages(category_filter=["sushi"]) %}
+            {% if messages: %}
+                {% for message in messages: %}
+                <div class="messages">
+                    <p>
+                        {{message}}
+                    </p>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h1 class="category_title">Beverages</h1>
+        <div class="products">
+            <div class="card">
+                <h2 class="product_title">Beer</h2>
+                <img src="{{ url_for('static',filename='imgs/beer.jpg') }}" alt="background image" class="menu_image">
+                <!-- <p class="product_description">Uramaki sushi with multiple fillings and toppings; including shrimp tempura, salmon, white fish, avocado, mango, with rice mixed with tobiko</p> -->
+                <form action="/add/product/beverage" method="POST">
+                    <input type="hidden" value="1" name="beverage_id">
+                    <button type="submit" class="action">Add to order</button>
+                </form>            
+            </div>
+            <div class="card">
+                <h2 class="product_title">Soda</h2>
+                <img src="{{ url_for('static',filename='imgs/coca.jpg') }}" alt="background image" class="menu_image">
+                <!-- <p class="product_description">Uramaki sushi with multiple fillings and toppings; including shrimp tempura, salmon, white fish, avocado, mango, with rice mixed with tobiko</p> -->
+                <form action="/add/product/beverage" method="POST">
+                    <input type="hidden" value="2" name="beverage_id">
+                    <button type="submit" class="action">Add to order</button>
+                </form>            
+            </div>
+            <div class="card">
+                <h2 class="product_title">Water</h2>
+                <img src="{{ url_for('static',filename='imgs/water].jpg') }}" alt="background image" class="menu_image">
+                <!-- <p class="product_description">Uramaki sushi with multiple fillings and toppings; including shrimp tempura, salmon, white fish, avocado, mango, with rice mixed with tobiko</p> -->
+                <form action="/add/product/beverage" method="POST">
+                    <input type="hidden" value="3" name="beverage_id">
+                    <button type="submit" class="action">Add to order</button>
+                </form>            
+            </div>
+        </div>
+        {% with messages = get_flashed_messages(category_filter=["beverage"]) %}
+            {% if messages: %}
+                {% for message in messages: %}
+                <div class="messages">
+                    <p>
+                        {{message}}
+                    </p>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <h1 class="category_title">Sides</h1>
+        <div class="products_sides">
+            <div class="card">
+                <h2 class="product_title">Miso soup</h2>
+                <img src="{{ url_for('static',filename='imgs/miso.jpg') }}" alt="background image" class="menu_image">
+                <!-- <p class="product_description">Uramaki sushi with multiple fillings and toppings; including shrimp tempura, salmon, white fish, avocado, mango, with rice mixed with tobiko</p> -->
+                <form action="/add/product/side" method="POST">
+                    <input type="hidden" value="1" name="side_id">
+                    <button type="submit" class="action">Add to order</button>
+                </form>            
+            </div>
+            <div class="card">
+                <h2 class="product_title">Edamame</h2>
+                <img src="{{ url_for('static',filename='imgs/edamame.jpg') }}" alt="background image" class="menu_image">
+                <!-- <p class="product_description">Uramaki sushi with multiple fillings and toppings; including shrimp tempura, salmon, white fish, avocado, mango, with rice mixed with tobiko</p> -->
+                <form action="/add/product/side" method="POST">
+                    <input type="hidden" value="2" name="side_id">
+                    <button type="submit" class="action">Add to order</button>
+                </form>            
+            </div>
+        </div>
+        {% with messages = get_flashed_messages(category_filter=["side"]) %}
+            {% if messages: %}
+                {% for message in messages: %}
+                <div class="messages">
+                    <p>
+                        {{message}}
+                    </p>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <div class="place_order">
+        <a href="/cart" class="action">Place order</a>
+    </div>
+    
+
+</body>
+</html>

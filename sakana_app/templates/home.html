@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/home_styles.css') }}">
+    <title>Sakana</title>
+</head>
+<body>
+    <!-- <img src="{{ url_for('static',filename='imgs/2.jpg') }}" alt="background image" class="home_background_img"> -->
+    <div  class="header">
+        <div class="logo_container">
+            <img src="{{ url_for('static',filename='imgs/logo.png') }}" alt="logo image" class="logo_img">    
+        </div>
+        <ul class="navBar">
+            <li><a href="/home" class="nav_option">Home</a></li>
+            <li><a href="/menu" class="nav_option">Menu</a></li>
+            {%if order_info == ()%}
+            <li><a href="/cart" class="nav_option">Cart</a></li>
+            {%else%}
+            <li><a href="/cart" class="nav_option">Cart (1)</a></li>
+            {%endif%}
+            <li><a href="/profile" class="nav_option">Profile</a></li>
+            <li><a href="/logout" class="nav_option">Logout</a></li>
+        </ul>
+    </div>
+    <div class="body_container">
+        <div class="left_section">
+            <h2>It’s sushi time and I’m feeling fine</h2>
+            <a href="/menu">
+                <img src="{{ url_for('static',filename='imgs/signup_background.jpg') }}" alt="background image" class="product_img">    
+            </a>
+            <a href="/menu" class="action">Take me to the menu</a>
+        </div>
+        <div class="right_section">
+            <div class="favorites">
+                <h2>All time favorites</h2>
+                <img src="{{ url_for('static',filename='imgs/mahmoud-fawzy-sGPMqwj3N5M-unsplash.jpg') }}" alt="background image" class="product_img">    
+                <p>Craving for a rainbow roll? or maybe a salmon skin roll?</p>
+                <p>Order your favorite here!</p>
+                <a href="/favorites" class="action">Go to favorites</a>
+            </div>
+            <div class="surprise_order">
+                <h2>Not sure what to order?</h2>
+                <p>We got your back! Our Flavor generator will help you to decide what to eat.</p>
+                <a href="/" class="action">Surprise me!</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

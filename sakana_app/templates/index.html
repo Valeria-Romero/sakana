@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index_styles.css') }}">
+    <title>Sakana</title>
+</head>
+<body>
+    
+    <div class="splash_img">
+        <img src="{{ url_for('static',filename='imgs/background2.jpg') }}" alt="splash image" class="splash_img">
+    </div>
+    <div class="splash_text">
+        <h1 class="fade-in">Travel through</h1>
+        <h1 class="senses fade-in">your senses</h1>
+        <h2 class="fade-in">stay at home</h2>
+    </div>
+    
+    <div class="login_box">
+        <h1 class="header_title">Welcome!</h1>
+        <h2 class="header_subtitle">It’s sushi o’clock</h2>
+        <form action="/login" class="login_form" method="POST">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="login_email">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <button type="submit" class="login_btn">Login</button>
+            <a href="/create/account" class="link">Don't have an account? En-roll here!</a>
+        </form>
+    </div>
+    
+    <div class="background">
+        <img src="{{ url_for('static',filename='imgs/signup_background2.jpg') }}" alt="background image" class="background">
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script_actions.js') }}"></script>
+</body>
+</html>

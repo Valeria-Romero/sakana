@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/signup_styles.css') }}">
+    <title>Sakana</title>
+</head>
+<body>
+    <img src="{{ url_for('static',filename='imgs/signup_background2.jpg') }}" alt="background image" class="background">
+    <h1 class="title">Sign up</h1>
+    <form action="/signup" class="signup" method="POST">
+        <div class="input_container">
+            <div class="input_info">
+                <label for="first_name">First name</label>
+                <input type="text" name="first_name" id="first_name">
+            </div>
+            
+            <div class="input_info">
+                <label for="last_name">Last name</label>
+                <input type="text" name="last_name" id="last_name">
+            </div>
+        </div>
+
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email">
+
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address">
+
+        
+        <div class="input_container">
+            <div class="input_info">
+                <label for="city">City</label>
+                <input type="text" name="city" id="city">
+            </div>
+
+            <div class="input_info">
+                <label for="state">State</label>
+                <select name="state" id="state" class="state_select">
+                    <option value="california">California</option>
+                    <option value="georgia">Georgia</option>
+                    <option value="nevada">Nevada</option>
+                    <option value="new_york">New York</option>
+                </select>
+            </div>
+    
+            <div class="input_info">
+                <label for="zipcode">Zipcode</label>
+                <input type="number" name="zipcode" id="zipcode">
+            </div>
+        </div>
+
+        <div class="input_container">
+            <div class="input_info">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+
+            <div class="input_info">
+                <label for="confirm_password">Confirm password</label>
+                <input type="password" name="confirm_password" id="confirm_password">
+            </div>
+        </div>
+        
+        <button type="submit" class="signup_btn">Sign up!</button>
+        <a href="/" class="link">Already have an account? Login  here</a>
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages: %}
+        {% for message in messages: %}
+            <p>
+                {{message}}
+            </p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+</body>
+</html>

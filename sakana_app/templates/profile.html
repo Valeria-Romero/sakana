@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/home_styles.css') }}">
+    <title>Sakana</title>
+</head>
+<body>
+    <img src="{{ url_for('static',filename='imgs/3.jpg') }}" alt="background image" class="home_background_img">
+    <div  class="header">
+        <div class="logo_container">
+            <img src="{{ url_for('static',filename='imgs/logo.png') }}" alt="logo image" class="logo_img">    
+        </div>
+        <ul class="navBar">
+            <li><a href="/home" class="nav_option">Home</a></li>
+            <li><a href="/menu" class="nav_option">Menu</a></li>
+            {%if order_info == ()%}
+            <li><a href="/cart" class="nav_option">Cart</a></li>
+            {%else%}
+            <li><a href="/cart" class="nav_option">Cart (1)</a></li>
+            {%endif%}
+            <li><a href="/profile" class="nav_option">Profile</a></li>
+            <li><a href="/logout" class="nav_option">Logout</a></li>
+        </ul>
+    </div>
+    <div class="profile_content">
+
+        <form action="/update/{{user_id}}" method="POST" class="update">
+            <h2>Update profile</h2>
+            <div class="input_container">
+                <div class="input_info">
+                    <label for="first_name">First name</label>
+                    <input type="text" name="first_name" id="first_name">
+                </div>
+                
+                <div class="input_info">
+                    <label for="last_name">Last name</label>
+                    <input type="text" name="last_name" id="last_name">
+                </div>
+            </div>
+        
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email">
+        
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address">
+        
+            
+            <div class="input_container">
+                <div class="input_info">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city">
+                </div>
+        
+                <div class="input_info">
+                    <label for="state">State</label>
+                    <select name="state" id="state" class="state_select">
+                        <option value="california">California</option>
+                        <option value="georgia">Georgia</option>
+                        <option value="nevada">Nevada</option>
+                        <option value="new_york">New York</option>
+                    </select>
+                </div>
+        
+                <div class="input_info">
+                    <label for="zipcode">Zipcode</label>
+                    <input type="number" name="zipcode" id="zipcode">
+                </div>
+            </div>
+        
+            <div class="input_container">
+                <div class="input_info">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+        
+                <div class="input_info">
+                    <label for="confirm_password">Confirm password</label>
+                    <input type="password" name="confirm_password" id="confirm_password">
+                </div>
+            </div>
+            
+            <button type="submit" class="signup_btn">Update information</button>
+        </form>
+        <div class="past_orders_info">
+            <h2 class="past_order_title">Past orders</h2>
+            <form action="/add_favorite" method="POST">
+            {%for order in past_orders%}
+                <div class="order_card">
+                    <h2>Order No. {{order['past_order_id']}}</h2>
+                    <div class="favorite">
+                        <p>{{order['sushi_name']}}, {{order['beverage_name']}}, {{order['side_name']}}</p>
+                        <input type="radio" name="order" value="{{order['past_order_id']}}" class="radio_favorite">
+                    </div>
+                </div>
+            {%endfor%}
+                <button type="submit" class="action">Select as favorite</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
